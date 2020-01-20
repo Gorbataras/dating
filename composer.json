@@ -1,0 +1,12 @@
+{
+  "name": "dating",
+  "authors": [
+    {
+      "name": "Taras Gorbachevskiy",
+      "email": "gorbataras@gmail.com"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
