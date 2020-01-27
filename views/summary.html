@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile Summary</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ @BASE }}/styles/styles.css">
 </head>
 <body>
 <!--NAV-->
@@ -15,12 +17,49 @@
 
 <div class="container">
     <div class="row">
-        <h1 class="border-bottom">Personal Information</h1>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm">
+                    <ul class="list-group">
+                        <li class="list-group-item">Name: {{ @SESSION.fname }} {{ @SESSION.lname}}</li>
+                        <li class="list-group-item">Gender: {{ @SESSION.gender }}</li>
+                        <li class="list-group-item">Age: {{ @SESSION.age }}</li>
+                        <li class="list-group-item">Phone: {{ @SESSION.phone }}</li>
+                        <li class="list-group-item">Email: {{ @SESSION.email }}</li>
+                        <li class="list-group-item">State: {{ @SESSION.state }}</li>
+                        <li class="list-group-item">Seeking: {{ @SESSION.seeking}}</li>
+                        <li class="list-group-item">Interests: {{ @SESSION.indoorString }}, {{ @SESSION.outdoorString }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-sm-6">
+            <div class="row">
+                <img class="img-fluid" src="{{ @BASE }}/images/profilepicture.png" alt="Profile Picture Image">
+            </div>
+            <div class="row">
+                <h5>Biography</h5>
+            </div>
+            <div class="row">
+                <p class="text-center">{{ @SESSION.bio }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    <div class="row justify-content-center">
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-lg btn-primary">Contact Me!</button>
+        </div>
     </div>
 
 
 </div> <!--Close Wrapper-->
 
+<!--Bootstrap-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

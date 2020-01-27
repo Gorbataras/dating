@@ -36,13 +36,24 @@ $f3->route('POST /profile', function () {
 });
 
 //TO INTERESTS PAGE
-$f3->route('GET /interests', function () {
+$f3->route('POST /interests', function () {
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['state'] = $_POST['state'];
+    $_SESSION['bio'] = $_POST['bio'];
+    $_SESSION['seeking'] = $_POST['seeking'];
     $view = new Template();
     echo $view->render('views/interests.html');
 });
 
 //TO SUMMARY PAGE
-$f3->route('GET /summary', function () {
+$f3->route('POST /summary', function () {
+
+
+    $indoorInterests = $_POST['indoor'];
+    $outdoorInterests = $_POST['outdoor'];
+    $_SESSION['indoorString'] = implode( ", ", $indoorInterests);
+    $_SESSION['outdoorString'] = implode( ", ", $outdoorInterests);
+
     $view = new Template();
     echo $view->render('views/summary.html');
 });
