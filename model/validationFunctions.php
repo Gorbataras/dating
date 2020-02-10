@@ -54,23 +54,27 @@ function validateInterests() {
 }
 
 	function validName($string) {
+	//If its not empty and uses only characters
 		return !empty($string) && ctype_alpha($string);
 	}
 
 	function validAge($age) {
-		return !empty($age) && is_numeric($age) && $age < 150 && $age > 0;
+	//If not empty and is number and reasonable age
+		return !empty($age) && is_numeric($age) && $age < 130 && $age > 0;
 	}
 
 	function validPhone($phone) {
+	// if not empty and is right format
 		return !empty($phone) && preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phone);
 	}
 
 	function validEmail($email) {
+	// if not empty and is email format
 		return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
 	}
 
 	function validOutdoor($activity) {
-
+	// Parses through the given hive array and checks if the current key is in it.
 		$subvalid=FALSE;
 		if (!empty($activity)) {
 			foreach ($activity as $key=>$value) {
@@ -84,7 +88,7 @@ function validateInterests() {
 	}
 
 	function validIndoor($activity) {
-
+		// Parses through the given hive array and checks if the current key is in it.
 		$subvalid=FALSE;
 		if (!empty($activity)) {
 			foreach ($activity as $key=>$value) {
