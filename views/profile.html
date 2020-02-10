@@ -27,6 +27,9 @@
                 <div class="col-sm-10">
                     <label for="email"><strong>E-mail</strong></label>
                     <input type="text" id="email" name="email" value="{{ @email }}" class="form-control" >
+					<check if="{{ @errors['email'] }}">
+						<span class="text-danger">{{ @errors['email'] }}</span>
+					</check>
                 </div>
             </div>
             <br>
@@ -41,12 +44,24 @@
                 <div class="col-sm-10">
                     <label><strong>Seeking:</strong></label>
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" value="male" id="male" name="seeking">
+                        <input type="radio" class="form-check-input" value="male" id="male" name="seeking"
+
+						<F3:check if="{{ @SESSION['gender'] == 'male' }}">
+							checked
+						</F3:check>
+
+						>
                         <label for="male" class="form-check-label">Male</label>
                     </div>
 
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" value="female" id="female" name="seeking">
+                        <input type="radio" class="form-check-input" value="female" id="female" name="seeking"
+
+							<F3:check if="{{ @SESSION['gender'] == 'female' }}">
+								checked
+							</F3:check>
+
+						>
                         <label for="female" class="form-check-label">Female</label>
                     </div>
                 </div>
@@ -57,7 +72,11 @@
             <div class="row">
                 <div class="col-sm">
                     <label for="bio"><strong>Biography</strong></label>
-                    <textarea class="form-control" name="bio" id="bio" cols="30" rows="8"></textarea>
+                    <textarea class="form-control" name="bio" id="bio" cols="30" rows="8">
+
+						{{ @bio }}
+
+					</textarea>
                 </div>
             </div>
             <br>

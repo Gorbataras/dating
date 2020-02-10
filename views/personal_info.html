@@ -57,12 +57,23 @@
             <div class="col-sm-6">
                 <label><strong>Gender:</strong></label>
                 <div class="form-check">
-                    <input type="radio" class="form-check-input" value="male" id="male" name="gender">
+                    <input type="radio" class="form-check-input" value="male" id="male" name="gender"
+
+						<F3:check if="{{ @SESSION['gender'] == 'male' }}">
+							checked
+						</F3:check>
+					>
                     <label for="male" class="form-check-label">Male</label>
                 </div>
 
                 <div class="form-check">
-                    <input type="radio" class="form-check-input" value="female" id="female" name="gender">
+                    <input type="radio" class="form-check-input" value="female" id="female" name="gender"
+
+					<F3:check if="{{ @SESSION['gender'] == 'female' }}">
+						checked
+					</F3:check>
+
+					>
                     <label for="female" class="form-check-label">Female</label>
                 </div>
             </div>

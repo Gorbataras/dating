@@ -14,22 +14,22 @@ $f3 = Base::instance();
 
 $f3->set('DEBUG', 3);
 
-$f3->set('indoorOptions', 	array(	'tv',
-									'movies',
-									'cooking',
-									'boardgames',
-									'puzzles',
-									'reading',
-									'playingcards',
-									'videogames'
+$f3->set('indoorOptions', 	array(	'tv'=>'TV',
+									'movies'=>'Movies',
+									'cooking'=>'Cooking',
+									'boardgames'=>'Board Games',
+									'puzzles'=>'Puzzles',
+									'reading'=>'Reading',
+									'playingcards'=>'Playing Cards',
+									'videogames'=>'Video Games'
 ));
 
-$f3->set('outdoorOptions', array(	'hiking',
-									'biking',
-									'swimming',
-									'collecting',
-									'walking',
-									'climbing'
+$f3->set('outdoorOptions', array(	'hiking'=>'Hiking',
+									'biking'=>'Biking',
+									'swimming'=>'Swimming',
+									'collecting'=>'Collecting',
+									'walking'=>'Walking',
+									'climbing'=>'Climbing'
 ));
 
 $f3->set('genderOptions', array('male', 'female'));
@@ -113,21 +113,21 @@ $f3->route('GET|POST /profile', function ($f3) {
 //TO INTERESTS PAGE
 $f3->route('GET|POST /interests', function ($f3) {
 
-	var_dump($_SESSION);
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	$indoorInterests = $_POST['indoor'];
-	$outdoorInterests = $_POST['outdoor'];
+		$indoorInterests=$_POST['indoor'];
+		$outdoorInterests=$_POST['outdoor'];
 
-	$f3->set('indoorInterests', $indoorInterests);
-	$f3->set('outdoorInterests', $outdoorInterests);
+		$f3->set('indoorInterests',$indoorInterests);
+		$f3->set('outdoorInterests',$outdoorInterests);
 
 
-	if (validateInterests()) {
-		$_SESSION['indoorString']=implode(", ",$indoorInterests);
-		$_SESSION['outdoorString']=implode(", ",$outdoorInterests);
-		$f3->reroute('/summary');
-    }
-
+		if (validateInterests()) {
+			$_SESSION['indoorString']=implode(", ",$indoorInterests);
+			$_SESSION['outdoorString']=implode(", ",$outdoorInterests);
+			$f3->reroute('/summary');
+		}
+	}
     $view = new Template();
     echo $view->render('views/interests.html');
 });
