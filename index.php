@@ -32,6 +32,8 @@ $f3->set('outdoorOptions', array(	'hiking',
 									'climbing'
 ));
 
+$f3->set('genderOptions', array('male', 'female'));
+
 // Defining a default route
 $f3->route('GET /', function () {
     $view = new Template();
@@ -80,7 +82,6 @@ $f3->route('GET|POST /personal', function ($f3) {
 //TO PROFILE PAGE
 $f3->route('GET|POST /profile', function ($f3) {
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
 
 		$email=$_POST['email'];
 		$state=$_POST['state'];
