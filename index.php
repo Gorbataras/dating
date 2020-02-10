@@ -115,6 +115,7 @@ $f3->route('GET|POST /interests', function ($f3) {
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+		var_dump($_POST);
 		$indoorInterests=$_POST['indoor'];
 		$outdoorInterests=$_POST['outdoor'];
 
@@ -133,7 +134,7 @@ $f3->route('GET|POST /interests', function ($f3) {
 });
 
 //TO SUMMARY PAGE
-$f3->route('POST /summary', function () {
+$f3->route('GET /summary', function () {
 
     $view = new Template();
     echo $view->render('views/summary.html');

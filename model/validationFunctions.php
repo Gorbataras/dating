@@ -70,11 +70,28 @@ function validateInterests() {
 	}
 
 	function validOutdoor($activity) {
-		global $f3;
-		return in_array($activity, $f3->get('outdoorOptions'));
+
+		$subvalid=FALSE;
+		if (!empty($activity)) {
+			foreach ($activity as $key=>$value) {
+				if (!in_array($key,$activity)) {
+					$subvalid=TRUE;
+				}
+			}
+		}
+		return $subvalid;
+
 	}
 
 	function validIndoor($activity) {
-		global $f3;
-		return in_array($activity, $f3->get('indoorOptions'));
+
+		$subvalid=FALSE;
+		if (!empty($activity)) {
+			foreach ($activity as $key=>$value) {
+				if (!in_array($key , $activity)) {
+					$subvalid=TRUE;
+				}
+			}
+		}
+		return $subvalid;
 	}
