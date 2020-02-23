@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 // Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -36,6 +36,7 @@ $f3->set('genderOptions', array('male', 'female'));
 
 // Defining a default route
 $f3->route('GET /', function () {
+	session_destroy();
     $view = new Template();
     echo $view->render('views/home.html');
 });
@@ -44,7 +45,7 @@ $f3->route('GET /', function () {
 $f3->route('GET|POST /personal', function ($f3) {
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+		session_start();
 		echo ($f3->get('ERROR.text'));
 		//Get data from form
 		$fname = $_POST['fname'];
@@ -52,6 +53,7 @@ $f3->route('GET|POST /personal', function ($f3) {
 		$age = $_POST['age'];
 		$gender = $_POST['gender'];
 		$phone = $_POST['phone'];
+		$membership = $_POST['membership'];
 
 		//Add to Hive
 		$f3->set('fname', $fname);
@@ -59,9 +61,11 @@ $f3->route('GET|POST /personal', function ($f3) {
 		$f3->set('age', $age);
 		$f3->set('gender', $gender);
 		$f3->set('phone', $phone);
+		$f3->set('membership', $phone);
 
 		//Gender is optional
 		$_SESSION['gender'] = $gender;
+
 
 		if (validatePersonal()) {
 			$_SESSION['fname'] = $fname;
@@ -69,6 +73,14 @@ $f3->route('GET|POST /personal', function ($f3) {
 			$_SESSION['age'] = $age;
 			$_SESSION['phone'] = $phone;
 
+			//Before reroute, add info to obj
+			if ($membership == 'Premium') {
+				$_SESSION['membership'] = $membership;
+				$_SESSION['member'] = new PremiumMember($fname, $lname, $age, $phone, $gender);
+			} else {
+				$_SESSION['membership'] = 'Basic';
+				$_SESSION['member'] = new Member($fname, $lname, $age, $phone, $gender);
+			}
 			$f3-> reroute('/profile');
 		}
 	}
