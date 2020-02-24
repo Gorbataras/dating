@@ -28,7 +28,10 @@
                         <li class="list-group-item">Email: {{ @SESSION.email }}</li>
                         <li class="list-group-item">State: {{ @SESSION.state }}</li>
                         <li class="list-group-item">Seeking: {{ @SESSION.seeking}}</li>
-                        <li class="list-group-item">Interests: {{ @SESSION.indoorString }}, {{ @SESSION.outdoorString }}</li>
+                        <F3:check if="{{ @SESSION.member instanceof PremiumMember }}">
+							<li class="list-group-item">Interests: {{ @SESSION.indoorString }}, {{ @SESSION.outdoorString }}</li>
+                        </F3:check>
+
                     </ul>
                 </div>
             </div>
